@@ -1,3 +1,9 @@
+import os
+import sys
+
+# Ajouter le dossier Backend au chemin de recherche pour permettre les imports relatifs en déploiement
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from routes.classification_routes import router as prediction_router
