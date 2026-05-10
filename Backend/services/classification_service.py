@@ -1,12 +1,17 @@
+import os
 import numpy as np
 import joblib
 from schemas.predict_schema import InputData
 from schemas.predict_schema import LinearRegressionInput
 
 
+# Obtenir le chemin du dossier models
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+MODELS_DIR = os.path.join(BASE_DIR, "models")
+
 # Charger modèle + scaler
-knn_model = joblib.load("models/knn_model.pkl")
-scaler = joblib.load("models/scaler.pkl")
+knn_model = joblib.load(os.path.join(MODELS_DIR, "knn_model.pkl"))
+scaler = joblib.load(os.path.join(MODELS_DIR, "scaler.pkl"))
 
 def predict_knn(data: InputData):
 
@@ -45,8 +50,8 @@ def predict_knn(data: InputData):
         "message": result[prediction]
     }
 
-svm_model = joblib.load("models/svm_model.pkl")
-svm_scaler = joblib.load("models/svm_scaler.pkl")
+svm_model = joblib.load(os.path.join(MODELS_DIR, "svm_model.pkl"))
+svm_scaler = joblib.load(os.path.join(MODELS_DIR, "svm_scaler.pkl"))
 
 def predict_svm(data: InputData):
    
@@ -86,8 +91,8 @@ def predict_svm(data: InputData):
         "message": result[prediction]
     }
 
-Dtree_model = joblib.load("models/Dtree_model.pkl")
-Dtree_scaler = joblib.load("models/Dtree_scaler.pkl")
+Dtree_model = joblib.load(os.path.join(MODELS_DIR, "Dtree_model.pkl"))
+Dtree_scaler = joblib.load(os.path.join(MODELS_DIR, "Dtree_scaler.pkl"))
 
 def predict_Dtree(data: InputData):
    
@@ -126,8 +131,8 @@ def predict_Dtree(data: InputData):
         "prediction": int(prediction),
         "message": result[prediction]
     }
-Rf_model = joblib.load("models/Rf_model.pkl")
-Rf_scaler = joblib.load("models/Rf_scaler.pkl")
+Rf_model = joblib.load(os.path.join(MODELS_DIR, "Rf_model.pkl"))
+Rf_scaler = joblib.load(os.path.join(MODELS_DIR, "Rf_scaler.pkl"))
 
 def predict_Rf(data: InputData):
    
@@ -167,7 +172,7 @@ def predict_Rf(data: InputData):
         "message": result[prediction]
     }
 
-xgb_model = joblib.load("models/xgb_model.pkl")
+xgb_model = joblib.load(os.path.join(MODELS_DIR, "xgb_model.pkl"))
 def predict_xgb_service(data: InputData):
 
     # Préparation des données... (Identique à KNN)
@@ -202,8 +207,8 @@ def predict_xgb_service(data: InputData):
 #mariem
 
 # Charger le modèle et le scaler pour la régression linéaire
-linear_model = joblib.load("models/linear_model.pkl")
-linear_scaler = joblib.load("models/scaler_linear.pkl")
+linear_model = joblib.load(os.path.join(MODELS_DIR, "linear_model.pkl"))
+linear_scaler = joblib.load(os.path.join(MODELS_DIR, "scaler_linear.pkl"))
 
 
 def predict_linear_regressionM(data: LinearRegressionInput):
@@ -236,8 +241,8 @@ def predict_linear_regressionM(data: LinearRegressionInput):
 
 #bilel
 
-model_poly = joblib.load("models/model_poly.pkl")
-poly_features = joblib.load("models/poly_features.pkl")
+model_poly = joblib.load(os.path.join(MODELS_DIR, "model_poly.pkl"))
+poly_features = joblib.load(os.path.join(MODELS_DIR, "poly_features.pkl"))
 
 def predict_academic_pressure(data: LinearRegressionInput):
 
@@ -270,8 +275,8 @@ def predict_academic_pressure(data: LinearRegressionInput):
     }
 
 # Charger modèle et scaler EXACTEMENT comme dans le dossier
-log_model = joblib.load("models/logistique_model.pkl")
-log_scaler = joblib.load("models/scaler_logistique.pkl")
+log_model = joblib.load(os.path.join(MODELS_DIR, "logistique_model.pkl"))
+log_scaler = joblib.load(os.path.join(MODELS_DIR, "scaler_logistique.pkl"))
 
 def predict_logistic_regression(data: InputData):
 
